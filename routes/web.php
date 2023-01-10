@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('', [\App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
+
+Route::post('/user', function () {
+    echo '<h1>Đây là phương thức get</h1>';
+    echo '<h2>Link: '. url('user').'</h2>';
+})->name('profile');
