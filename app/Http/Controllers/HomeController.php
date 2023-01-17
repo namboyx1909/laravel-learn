@@ -19,6 +19,11 @@ class HomeController extends Controller
         return view('login');
     }
 
+    public function signUp()
+    {
+        return view('sign_up');
+    }
+
     public function check_login(Request $request)
     {
         $rules = [
@@ -32,7 +37,22 @@ class HomeController extends Controller
             'password.required' => 'Mật khẩu không được để trống'
         ];
         $request->validate($rules, $message);
+    }
 
+    public function check_sign_up(Request $request)
+    {
+        $rules = [
+            'name' => 'required|max:20|min:6',
+            'email' => 'required|email',
+            'password' => 'required|confirmed',
+        ];
+
+        $message = [
+            'email.required' => 'Địa chỉ email không được để trống',
+            'email.email' => 'Địa chỉ email không đúng định dạng',
+            'password.required' => 'Mật khẩu không được để trống'
+        ];
+        $request->validate($rules, $message);
     }
 
     public function upload()
